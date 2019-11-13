@@ -1,5 +1,5 @@
-import styled from 'styled-components/native';
-import {RectButton} from 'react-native-gesture-handler';
+import styled from "styled-components/native";
+import { RectButton } from "react-native-gesture-handler";
 
 export const Container = styled.View`
   padding-top: 10px;
@@ -17,9 +17,14 @@ export const Card = styled.View`
   margin-bottom: 30px;
 `;
 
+export const ContainerItem = styled.FlatList`
+  width: 360px;
+`;
+
 export const Item = styled.View`
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 360px;
 `;
 
@@ -56,7 +61,7 @@ export const Price = styled.Text`
 `;
 
 export const ProductDescription = styled.Text.attrs({
-  numberOfLines: 2,
+  numberOfLines: 2
 })`
   font-size: 15px;
   padding: 10px;
