@@ -36,7 +36,7 @@ function* addToCart({id}) {
 
     yield put(addToCartSucess(data));
     // history.push('/cart');
-    // NavigationService.navigate('Cart');
+    NavigationService.navigate('Cart');
   }
 }
 
