@@ -1,12 +1,12 @@
-import React from "react";
-import { StatusBar } from "react-native";
-import { Provider } from "react-redux";
+import React from 'react';
+import {StatusBar} from 'react-native';
+import {Provider} from 'react-redux';
 
-import "./config/ReactotronConfig";
+import './config/ReactotronConfig';
 
-import store from "./store";
+import store from './store';
 
-import Routes from "./routes";
+import Routes from './routes';
 
 export default function App() {
   return (

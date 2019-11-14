@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
-import { RectButton } from "react-native-gesture-handler";
+import styled from 'styled-components/native';
+import {RectButton} from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   padding-top: 10px;
@@ -61,7 +61,7 @@ export const Price = styled.Text`
 `;
 
 export const ProductDescription = styled.Text.attrs({
-  numberOfLines: 2
+  numberOfLines: 2,
 })`
   font-size: 15px;
   padding: 10px;

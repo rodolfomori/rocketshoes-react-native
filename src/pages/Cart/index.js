@@ -1,6 +1,7 @@
-import React from "react";
-import { connect } from "react-redux";
-import Icon from "react-native-vector-icons/MaterialIcons";
+import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
   Container,
@@ -18,13 +19,20 @@ import {
   ProductControlButton,
   Total,
   TotalAmount,
-  ContainerItem
-} from "./styles";
+  ContainerItem,
+} from './styles';
 
-import { formatPrice } from "../../util/format";
-import { dispatch } from "rxjs/internal/observable/pairs";
+import {formatPrice} from '../../util/format';
+import * as CartActions from '../../store/modules/cart/actions';
 
-function Cart({ cart, dispatch }) {
+function Cart({cart, removeFromCart, updateAmount, total}) {
+  function increment(item) {
+    updateAmount(item.id, item.amount + 1);
+  }
+
+  function decrement(item) {
+    updateAmount(item.id, item.amount - 1);
+  }
   return (
     <Container>
       <Card>
@@ -32,12 +40,12 @@ function Cart({ cart, dispatch }) {
           vertical
           data={cart}
           keyExtractor={item => item.id}
-          renderItem={({ item }) => (
+          renderItem={({item}) => (
             <>
               <Item>
                 <ProductImage
                   source={{
-                    url: item.image
+                    url: item.image,
                   }}
                 />
                 <ContainerItens>
@@ -48,18 +56,14 @@ function Cart({ cart, dispatch }) {
                   name="delete-forever"
                   size={30}
                   color="#7151c1"
-                  style={{ marginRight: 15 }}
-                  onPress={() =>
-                    dispatch({
-                      type: "REMOVE_TO_CART",
-                      id: item.id
-                    })
-                  }
+                  style={{marginRight: 15}}
+                  onPress={() => removeFromCart(item.id)}
                 />
               </Item>
               <DivTotalAndQuantity>
                 <ProductControlButton>
                   <Icon
+                    onPress={() => decrement(item)}
                     name="remove-circle-outline"
                     size={20}
                     color="#7151c1"
@@ -67,15 +71,20 @@ function Cart({ cart, dispatch }) {
                 </ProductControlButton>
                 <NumberOfItens value={String(item.amount)} editable={false} />
                 <ProductControlButton>
-                  <Icon name="add-circle-outline" size={20} color="#7151c1" />
+                  <Icon
+                    onPress={() => increment(item)}
+                    name="add-circle-outline"
+                    size={20}
+                    color="#7151c1"
+                  />
                 </ProductControlButton>
-                <TotalItens>R$400,00</TotalItens>
+                <TotalItens>{item.subtotal}</TotalItens>
               </DivTotalAndQuantity>
             </>
           )}
         />
         <Total>Total</Total>
-        <TotalAmount>R$1000,00</TotalAmount>
+        <TotalAmount>{total}</TotalAmount>
         <AddProductToCartButton>
           <AddProductToCartButtonText>
             Finalizar Pedido
@@ -87,8 +96,21 @@ function Cart({ cart, dispatch }) {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart,
-  priceFormatted: formatPrice(state.cart.price)
+  cart: state.cart.map(product => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice(
+    state.cart.reduce((total, product) => {
+      return total + product.price * product.amount;
+    }, 0),
+  ),
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Cart);

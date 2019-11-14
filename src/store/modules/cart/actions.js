@@ -1,36 +1,21 @@
-export function addToCartRequest(id) {
+export function addToCart(id) {
   return {
-    type: "@cart/ADD_REQUEST",
-    id
-  };
-}
-
-export function addToCartSucess(product) {
-  return {
-    type: "@cart/ADD_SUCESS",
-    product
+    type: '@cart/ADD',
+    id,
   };
 }
 
 export function removeFromCart(id) {
   return {
-    type: "@cart/REMOVE",
-    id
+    type: '@cart/REMOVE',
+    id,
   };
 }
 
-export function updateAmountRequest(id, amount) {
+export function updateAmount(id, amount) {
   return {
-    type: "@cart/UPDATE_AMOUNT_REQUEST",
+    type: '@cart/UPDATE_AMOUNT',
     id,
-    amount
-  };
-}
-
-export function updateAmountSucess(id, amount) {
-  return {
-    type: "@cart/UPDATE_AMOUNT_SUCESS",
-    id,
-    amount
+    amount,
   };
 }

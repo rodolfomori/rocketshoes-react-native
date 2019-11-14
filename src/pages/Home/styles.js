@@ -29,11 +29,29 @@ export const AddProductToCartButton = styled(RectButton)`
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const AddProductToCartButtonText = styled.Text`
   text-transform: uppercase;
   color: white;
+  font-weight: bold;
+  margin-right: 25px;
+`;
+
+export const AmountItensInCart = styled.View`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 15px;
+`;
+
+export const AmountItensInCartText = styled.Text`
+  text-transform: uppercase;
+  color: white;
+  font-size: 14px;
 `;
 
 export const Price = styled.Text`
