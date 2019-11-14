@@ -25,13 +25,13 @@ import {
 import {formatPrice} from '../../util/format';
 import * as CartActions from '../../store/modules/cart/actions';
 
-function Cart({cart, removeFromCart, updateAmount, total}) {
+function Cart({cart, removeFromCart, total, updateAmountRequest}) {
   function increment(item) {
-    updateAmount(item.id, item.amount + 1);
+    updateAmountRequest(item.id, item.amount + 1);
   }
 
   function decrement(item) {
-    updateAmount(item.id, item.amount - 1);
+    updateAmountRequest(item.id, item.amount - 1);
   }
   return (
     <Container>
