@@ -20,6 +20,8 @@ import {
   Total,
   TotalAmount,
   ContainerItem,
+  EmptyContainer,
+  EmptyText,
 } from './styles';
 
 import {formatPrice} from '../../util/format';
@@ -35,62 +37,81 @@ function Cart({cart, removeFromCart, total, updateAmountRequest}) {
   }
   return (
     <Container>
-      <Card>
-        <ContainerItem
-          vertical
-          data={cart}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <>
-              <Item>
-                <ProductImage
-                  source={{
-                    url: item.image,
-                  }}
-                />
-                <ContainerItens>
-                  <ProductDescription>{item.title} </ProductDescription>
-                  <Price>{item.priceFormatted}</Price>
-                </ContainerItens>
-                <Icon
-                  name="delete-forever"
-                  size={30}
-                  color="#7151c1"
-                  style={{marginRight: 15}}
-                  onPress={() => removeFromCart(item.id)}
-                />
-              </Item>
-              <DivTotalAndQuantity>
-                <ProductControlButton>
-                  <Icon
-                    onPress={() => decrement(item)}
-                    name="remove-circle-outline"
-                    size={20}
-                    color="#7151c1"
-                  />
-                </ProductControlButton>
-                <NumberOfItens value={String(item.amount)} editable={false} />
-                <ProductControlButton>
-                  <Icon
-                    onPress={() => increment(item)}
-                    name="add-circle-outline"
-                    size={20}
-                    color="#7151c1"
-                  />
-                </ProductControlButton>
-                <TotalItens>{item.subtotal}</TotalItens>
-              </DivTotalAndQuantity>
-            </>
-          )}
-        />
-        <Total>Total</Total>
-        <TotalAmount>{total}</TotalAmount>
-        <AddProductToCartButton>
-          <AddProductToCartButtonText>
-            Finalizar Pedido
-          </AddProductToCartButtonText>
-        </AddProductToCartButton>
-      </Card>
+      {cart.length ? (
+        <>
+          <Card>
+            <ContainerItem
+              vertical
+              data={cart}
+              keyExtractor={item => item.id}
+              renderItem={({item}) => (
+                <>
+                  <Item>
+                    <ProductImage
+                      source={{
+                        url: item.image,
+                      }}
+                    />
+
+                    <ContainerItens>
+                      <ProductDescription>{item.title} </ProductDescription>
+                      <Price>{item.priceFormatted}</Price>
+                    </ContainerItens>
+                    <Icon
+                      name="delete-forever"
+                      size={30}
+                      color="#7151c1"
+                      style={{marginRight: 15}}
+                      onPress={() => removeFromCart(item.id)}
+                    />
+                  </Item>
+                  <DivTotalAndQuantity>
+                    <ProductControlButton>
+                      <Icon
+                        onPress={() => decrement(item)}
+                        name="remove-circle-outline"
+                        size={20}
+                        color="#7151c1"
+                      />
+                    </ProductControlButton>
+                    <NumberOfItens
+                      value={String(item.amount)}
+                      editable={false}
+                    />
+                    <ProductControlButton>
+                      <Icon
+                        onPress={() => increment(item)}
+                        name="add-circle-outline"
+                        size={20}
+                        color="#7151c1"
+                      />
+                    </ProductControlButton>
+                    <TotalItens>{item.subtotal}</TotalItens>
+                  </DivTotalAndQuantity>
+                </>
+              )}
+            />
+
+            <Total>Total</Total>
+            <TotalAmount>{total}</TotalAmount>
+            <AddProductToCartButton>
+              <AddProductToCartButtonText>
+                Finalizar Pedido
+              </AddProductToCartButtonText>
+            </AddProductToCartButton>
+          </Card>
+        </>
+      ) : (
+        <EmptyContainer>
+          <Icon
+            name="remove-shopping-cart"
+            size={64}
+            color="#141419"
+            style={{textAlign: 'center', marginTop: 30}}
+          />
+          <EmptyText>Seu carrinho está vazio</EmptyText>
+        </EmptyContainer>
+      )}
     </Container>
   );
 }

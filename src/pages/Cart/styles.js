@@ -9,6 +9,22 @@ export const Container = styled.View`
   flex: 1;
 `;
 
+export const EmptyContainer = styled.View`
+  margin: 30px;
+  background-color: white;
+  height: 200px;
+  flex: 1;
+  border-radius: 10px;
+`;
+
+export const EmptyText = styled.Text`
+  color: #141419;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 40px;
+`;
+
 export const Card = styled.View`
   margin-left: auto;
   margin-right: auto;
