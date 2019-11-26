@@ -56,6 +56,12 @@ $ yarn install
 # Run the app
 $ yarn start
 ```
+# Installation on json server is required to simulate an API
+yarn add json-server
+
+# Starting the api
+json-server server.json -p 3333 -w
+
 
 ### Result:
 
