@@ -12,10 +12,8 @@
 <p align="center">
   <a href="#rocket-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-license">License</a>
 </p>
 
-![App Screenshot](https://res.cloudinary.com/lukemorales/image/upload/v1563042321/readme_logos/rocketshoes_readme_swvhr9.png)
 <p align="center">
 
 </p>
@@ -61,7 +59,7 @@ $ yarn start
 
 ### Result:
 
-<img src=".github/demo.gif" height="400">
+<img src="https://github.com/dolfomori/rocketshoes-react-native/blob/master/demo.gif" height="400">
 
 Made with ♥ by Rodolfo Mori :wave: [Get in touch!](https://www.linkedin.com/in/rodolfomori/)
 
