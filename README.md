@@ -60,10 +60,9 @@ $ yarn install
 $ yarn start
 ```
 
-## :memo: License
-This project is under the MIT license. See the [LICENSE](https://github.com/lukemorales/react-rocketshoes/blob/master/LICENSE) for more information.
+### Result:
 
----
+<img src=".github/demo.gif" height="400">
 
 Made with ♥ by Rodolfo Mori :wave: [Get in touch!](https://www.linkedin.com/in/rodolfomori/)
 
